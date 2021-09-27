@@ -1,6 +1,5 @@
 #include "Globals.h"
 #include "Application.h"
-#include "PhysBody3D.h"
 #include "ModuleCamera3D.h"
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -104,27 +103,6 @@ update_status ModuleCamera3D::Update(float dt)
 		}
 	}
 
-	else
-	{
-		vehicleToLook->GetTransform(&pointToLook);
-
-		const vec3 vehiclePosition = { pointToLook.M[12], pointToLook.M[13], pointToLook.M[14] };
-		
-		vec3 offset = { 0, 5, 0 };
-
-		btVector3 vehicleVec = { vehicleToLook->vehicle->getForwardVector().getX() * -10, 0, vehicleToLook->vehicle->getForwardVector().getZ() * -10 };
-		vec3 vehicleVec3 = { vehicleVec.getX(), vehicleVec.getY(), vehicleVec.getZ() };
-
-		float lerp = 500.0f;
-
-		vec3 distanceToCar = vehiclePosition + offset + vehicleVec3 - Position;
-
-		Position.x += distanceToCar.x * dt * 3;
-		Position.y = vehiclePosition.y + offset.y + vehicleVec3.y;
-		Position.z += distanceToCar.z * dt * 3;
-
-		LookAt(vehiclePosition);
-	}
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
 

@@ -4,7 +4,6 @@
 #include "glmath.h"
 
 //aun ns paq es
-#include "PhysVehicle3D.h"
 #include "Application.h"
 
 class ModuleCamera3D : public Module
@@ -30,8 +29,6 @@ public:
 	
 	vec3 X, Y, Z, Position, Reference;
 	bool freeMode;
-
-	PhysVehicle3D* vehicleToLook;
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
